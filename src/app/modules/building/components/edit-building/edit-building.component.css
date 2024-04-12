@@ -1,0 +1,27 @@
+input.ng-invalid.ng-touched{
+    border: red 1px solid;
+}
+.danger-container{
+    height: 5vh;
+    padding-left: 1vw;
+}
+.input-group{
+    width: 23vw;
+}
+.edit-input-form{
+    width: 40%;
+
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.headling{
+    text-align: center;
+}
+.btn{
+    margin-right: 10px;
+}

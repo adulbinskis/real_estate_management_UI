@@ -1,0 +1,13 @@
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+.table-container{
+    padding: 20px;
+}
+.table{
+    margin-top: 20px;
+}
+.btn{
+    margin-right: 15px;
+}
+span{
+    display:block; text-align:center; margin:0 auto;
+}

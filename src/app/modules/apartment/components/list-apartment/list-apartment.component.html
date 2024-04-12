@@ -1,0 +1,32 @@
+<div class="table-container">
+    <button class="btn btn-light" *ngIf="auth.role === 'Admin'|| 'User'" (click)="editComponent(undefined)">Create apartment</button>
+    <!-- <button class="btn btn-light" *ngIf="auth.role === 'User'||'Admin'" [routerLink]="['../all']">Full table</button> -->
+    <table class="table" *ngIf="auth.role !== undefined">
+        <thead>
+            <th scope="col">Id</th>
+            <th scope="col">Number</th>
+            <th scope="col">Floor</th>
+            <th scope="col">Number Of Rooms</th>
+            <th scope="col">Number Of Tenants</th>
+            <th scope="col">Full Area</th>
+            <th scope="col">Living Space</th>
+            <th scope="col">building Id</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let apartment of apartments" (click)="shareIdOnRedirect(apartment.id!)" >
+                <td>{{apartment.id}}</td>
+                <td>{{apartment.number}}</td>
+                <td>{{apartment.floor}}</td>
+                <td>{{apartment.numberOfRooms}}</td>
+                <td>{{apartment.numberOfTenants}}</td>
+                <td>{{apartment.fullArea}}</td>
+                <td>{{apartment.livingSpace}}</td>
+                <td>{{apartment.buildingId}}</td>
+                <td>
+                    <button class="btn btn-light" [routerLink]="['/tenants/'+ apartment.id]">View</button>
+                    <button class="btn btn-light" *ngIf="auth.role === 'Admin'|| 'User'" (click)="editComponent(apartment.id)"> Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

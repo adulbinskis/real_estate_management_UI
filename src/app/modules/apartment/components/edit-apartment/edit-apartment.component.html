@@ -1,0 +1,85 @@
+<ng-container *ngIf="apartmentForm as apartmentForm">
+    <div class="container">
+        <form [formGroup]="apartmentForm" class="edit-input-form">
+            <h2 class="headling">Create apartment</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Number:</span>
+                <input formControlName="number" class="form-control" placeholder="Number" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="apartmentForm.get('number')?.invalid && apartmentForm.get('number')?.touched" class="text-danger">
+                    <div *ngIf="apartmentForm.get('number')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Floor:</span>
+                <input formControlName="floor" class="form-control" placeholder="Floor" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="apartmentForm.get('floor')?.invalid && apartmentForm.get('floor')?.touched" class="text-danger">
+                    <div *ngIf="apartmentForm.get('floor')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Number of rooms:</span>
+                <input formControlName="numberOfRooms" class="form-control" placeholder="Number Of Rooms" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="apartmentForm.get('numberOfRooms')?.invalid && apartmentForm.get('numberOfRooms')?.touched" class="text-danger">
+                    <div *ngIf="apartmentForm.get('numberOfRooms')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Number of tenants:</span>
+                <input formControlName="numberOfTenants" class="form-control" placeholder="Number Of Tenants" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="apartmentForm.get('numberOfTenants')?.invalid && apartmentForm.get('numberOfTenants')?.touched" class="text-danger">
+                    <div *ngIf="apartmentForm.get('numberOfTenants')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Full area:</span>
+                <input formControlName="fullArea" class="form-control" placeholder="Full Area" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="apartmentForm.get('fullArea')?.invalid && apartmentForm.get('fullArea')?.touched" class="text-danger">
+                    <div *ngIf="apartmentForm.get('fullArea')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Living space:</span>
+                <input formControlName="livingSpace" class="form-control" placeholder="Living Space" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="apartmentForm.get('livingSpace')?.invalid && apartmentForm.get('livingSpace')?.touched" class="text-danger">
+                    <div *ngIf="apartmentForm.get('livingSpace')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Building Id:</span>
+                <select formControlName="buildingId" class="form-control">
+                  <option *ngFor="let building of buildings" [value]="building.id">{{"BuildID: "+ building.id +" | "+  building.city+ " | " + building.street+ " | " + building.postalCode }}</option>
+                </select>
+              </div>
+            <div class="danger-container">
+                <div *ngIf="apartmentForm.get('buildingId')?.invalid && apartmentForm.get('buildingId')?.touched" class="text-danger">
+                    <div *ngIf="apartmentForm.get('buildingId')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <button class="btn btn-light" (click)="closeModal(apartmentForm.value, 'update')" *ngIf="apartmentForm.value.id">Save</button>
+            <button class="btn btn-light" (click)="closeModal(apartmentForm.value, 'delete')" *ngIf="apartmentForm.value.id">Delete</button>
+            <button class="btn btn-light" (click)="closeModal(apartmentForm.value, 'create')" *ngIf="!apartmentForm.value.id">Create</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal(apartmentForm.value, 'close')">Close</button>
+            
+        </form>
+    </div>
+    
+</ng-container>

@@ -1,0 +1,97 @@
+<ng-container *ngIf="tenantForm as tenantForm">
+    <div class="container">
+        <form [formGroup]="tenantForm" class="edit-input-form">
+            <h2 class="headling">Create tenant</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Personal code:</span>
+                <input formControlName="personalCode" class="form-control" placeholder="Personal code" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="tenantForm.get('personalCode')?.invalid && tenantForm.get('personalCode')?.touched" class="text-danger">
+                    <div *ngIf="tenantForm.get('personalCode')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Name:</span>
+                <input formControlName="name" class="form-control" placeholder="Name" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="tenantForm.get('name')?.invalid && tenantForm.get('name')?.touched" class="text-danger">
+                    <div *ngIf="tenantForm.get('name')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Surname:</span>
+                <input formControlName="surname" class="form-control" placeholder="Surname" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="tenantForm.get('surname')?.invalid && tenantForm.get('surname')?.touched" class="text-danger">
+                    <div *ngIf="tenantForm.get('surname')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Birth day:</span>
+                <input
+				class="form-control"
+				placeholder="Date of birth"
+				name="dp"
+				ngbDatepicker
+				#d="ngbDatepicker"
+                formControlName="dateOfBirth"
+			/>
+			<button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3" viewBox="0 0 16 16">
+                    <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+                    <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                </svg>
+            </button>
+            </div>
+            <div class="danger-container">
+                <div *ngIf="tenantForm.get('dateOfBirth')?.invalid && tenantForm.get('dateOfBirth')?.touched" class="text-danger">
+                    <div *ngIf="tenantForm.get('dateOfBirth')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Phone:</span>
+                <input formControlName="phone" class="form-control" placeholder="Phone" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="tenantForm.get('phone')?.invalid && tenantForm.get('phone')?.touched" class="text-danger">
+                    <div *ngIf="tenantForm.get('phone')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Email:</span>
+                <input formControlName="email" class="form-control" placeholder="Email" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="tenantForm.get('email')?.invalid && tenantForm.get('email')?.touched" class="text-danger">
+                    <div *ngIf="tenantForm.get('email')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Apartment Id:</span>
+                <select formControlName="apartmentId" class="form-control">
+                  <option *ngFor="let apartment of apartments" [value]="apartment.id">{{"BuildID: " + apartment.buildingId + " ApartID: " + apartment.id + " Number: " + apartment.number }}</option>
+                </select>
+              </div>
+            <div class="danger-container">
+                <div *ngIf="tenantForm.get('apartmentId')?.invalid && tenantForm.get('apartmentId')?.touched" class="text-danger">
+                    <div *ngIf="tenantForm.get('apartmentId')?.errors?.['required']" >Field is required</div>
+                </div>
+            </div>
+
+            <button class="btn btn-light" (click)="closeModal(tenantForm.value, 'update')" *ngIf="tenantForm.value.id">Save</button>
+            <button class="btn btn-light" (click)="closeModal(tenantForm.value, 'delete')" *ngIf="tenantForm.value.id">Delete</button>
+            <button class="btn btn-light" (click)="closeModal(tenantForm.value, 'create')" *ngIf="!tenantForm.value.id">Create</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal(tenantForm.value, 'close')">Close</button>
+        </form>
+    </div>
+    
+</ng-container>

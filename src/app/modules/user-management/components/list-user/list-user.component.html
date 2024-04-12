@@ -1,0 +1,26 @@
+<div class="table-container">
+    <!-- <button class="btn btn-light"[routerLink]="['edit/'+' ']">Create tenant</button> -->
+    <table class="table">
+        <thead>
+            <th scope="col">Id</th>
+            <th scope="col">Email</th>
+            <th scope="col">Role</th>
+            <th scope="col">Option 1</th>
+            <th scope="col">Option 2</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.role}}</td>
+                <td>
+                    <button class="btn btn-light" (click)="deleteUser(user)" >Delete</button>             
+                </td>
+                <td>
+                    <button class="btn btn-light" (click)="promoteUser(user)" >Promote</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

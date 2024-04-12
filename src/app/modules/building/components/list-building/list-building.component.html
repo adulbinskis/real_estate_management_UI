@@ -1,0 +1,28 @@
+<div class="table-container">
+    <button class="btn btn-light" *ngIf="auth.role === 'Admin' || 'User'" (click)="editComponent(undefined)" >Create building</button> 
+    <table class="table" *ngIf="auth.role !== undefined">
+        <thead>
+            <th scope="col">Id</th>
+            <th scope="col">Code</th>
+            <th scope="col">Street</th>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
+            <th scope="col">Postal code</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let building of buildings" (click)="shareIdOnRedirect(building.id!)" >
+                <td>{{building.id}}</td>
+                <td>{{building.code}}</td>
+                <td>{{building.street}}</td>
+                <td>{{building.city}}</td>
+                <td>{{building.country}}</td>
+                <td>{{building.postalCode}}</td>
+                <td>
+                    <button class="btn btn-light" [routerLink]="['/apartments/'+ building.id]">View</button>
+                    <button class="btn btn-light" *ngIf="auth.role === 'Admin'|| 'User'" (click)="editComponent(building.id)" >Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-light" *ngIf="auth.role === 'Admin'" (click)="seePutin()">See GOD</button>
+</div>

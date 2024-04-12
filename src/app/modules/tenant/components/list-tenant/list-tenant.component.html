@@ -1,0 +1,26 @@
+<div class="table-container">
+    <button class="btn btn-light" *ngIf="auth.role === 'Admin'||'User'" (click)="editComponent(undefined)">Create tenant</button>
+    <table class="table" *ngIf="auth.role !== undefined">
+        <thead>
+            <th scope="col">Personal code</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Date of birth</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Apartment Id</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tenant of tenants">
+                <td>{{tenant.personalCode}}</td>
+                <td>{{tenant.name}}</td>
+                <td>{{tenant.surname}}</td>
+                <td>{{ datePipe.transform(tenant.dateOfBirth, 'dd/MM/yyyy') }}</td>
+                <td>{{tenant.phone}}</td>
+                <td>{{tenant.email}}</td>
+                <td>{{tenant.apartmentId}}</td>
+                <td><button class="btn btn-light" *ngIf="auth.role === 'Admin'||'User'" (click)="editComponent(tenant.id)">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

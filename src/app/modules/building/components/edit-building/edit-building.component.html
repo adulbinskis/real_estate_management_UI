@@ -1,0 +1,76 @@
+<ng-container *ngIf="buildingForm as buildingForm" class="container">
+    <div class="container">
+        <form [formGroup]="buildingForm" class="edit-input-form">
+            <h2 class="headling">Create building</h2>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Code:</span>
+                <input formControlName="code" class="form-control" placeholder="Code" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="buildingForm.get('code')?.invalid && buildingForm.get('code')?.touched" class="text-danger">
+                    <div *ngIf="buildingForm.get('code')?.errors?.['required']" >Field is required</div>
+                    <div *ngIf="buildingForm.get('code')?.errors?.['min']">Value must be greater than or equal to 1</div>
+                    <div *ngIf="buildingForm.get('code')?.errors?.['max']">Value must be less than or equal to 1000</div>
+                    <div *ngIf="buildingForm.get('code')?.errors?.['pattern']">Value must be number</div>
+                </div>    
+            </div>
+    
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Street:</span>
+                <input formControlName="street" placeholder="Street" class="form-control" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="buildingForm.get('street')?.invalid && buildingForm.get('street')?.touched" class="text-danger">
+                    <div *ngIf="buildingForm.get('street')?.errors?.['required']">Field is required</div>
+                    <div *ngIf="buildingForm.get('street')?.errors?.['minlength']">Value must be at least 1 character long</div>
+                    <div *ngIf="buildingForm.get('street')?.errors?.['maxlength']">Value must be at most 100 characters long</div>
+                    <div *ngIf="buildingForm.get('street')?.errors?.['pattern']">Incorrect street format! Example: Vidzemes 20-46</div>
+                </div>
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">City:</span>
+                <input formControlName="city" class="form-control" placeholder="City" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="buildingForm.get('city')?.invalid && buildingForm.get('city')?.touched" class="text-danger">
+                    <div *ngIf="buildingForm.get('city')?.errors?.['required']">Field is required</div>
+                    <div *ngIf="buildingForm.get('city')?.errors?.['minlength']">Value must be at least 1 character long</div>
+                    <div *ngIf="buildingForm.get('city')?.errors?.['maxlength']">Value must be at most 50 characters long</div>
+                    <div *ngIf="buildingForm.get('city')?.errors?.['pattern']">Incorrect City format! Example: Balvi</div>
+                </div>
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Country:</span>
+                <input formControlName="country" class="form-control" placeholder="Country" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="buildingForm.get('country')?.invalid && buildingForm.get('country')?.touched" class="text-danger">
+                    <div *ngIf="buildingForm.get('country')?.errors?.['required']">Field is required</div>
+                    <div *ngIf="buildingForm.get('country')?.errors?.['minlength']">Value must be at least 1 character long</div>
+                    <div *ngIf="buildingForm.get('country')?.errors?.['maxlength']">Value must be at most 50 characters long</div>
+                    <div *ngIf="buildingForm.get('country')?.errors?.['pattern']">Incorrect Country format! Example: Latvja</div>
+                </div>
+            </div>
+            
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Postal Code:</span>
+               <input formControlName="postalCode" class="form-control" placeholder="Postal Code" />
+            </div>
+            <div class="danger-container">
+                <div *ngIf="buildingForm.get('postalCode')?.invalid && buildingForm.get('postalCode')?.touched" class="text-danger">
+                    <div *ngIf="buildingForm.get('postalCode')?.errors?.['required']">Field is required</div>
+                    <div *ngIf="buildingForm.get('postalCode')?.errors?.['minlength']">Value must be at least 1 character long</div>
+                    <div *ngIf="buildingForm.get('postalCode')?.errors?.['maxlength']">Value must be at most 50 characters long</div>
+                    <div *ngIf="buildingForm.get('postalCode')?.errors?.['pattern']">Incorrect Postal code format! Example: LV-4501</div>
+                </div>
+            </div>
+    
+            <button class="btn btn-light" (click)="closeModal(buildingForm.value, 'update')" *ngIf="buildingForm.value.id">Save</button> 
+            <button class="btn btn-light" (click)="closeModal(buildingForm.value, 'delete')" *ngIf="buildingForm.value.id">Delete</button>
+            <button class="btn btn-light" (click)="closeModal(buildingForm.value, 'create')" *ngIf="!buildingForm.value.id">Create</button>
+            <button type="button" class="btn btn-secondary" (click)="closeModal(buildingForm.value, 'close')">Close</button>
+        </form>
+    </div>
+</ng-container>
